@@ -34,7 +34,7 @@ const DeleteItem = ({ deleteRow, payment }) => {
   const deleteItem = async (payment) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/api/${
+        `${process.env.NEXT_PUBLIC_BACK_URL}/api/${
           pathname.split("/")[2].slice(6).toLowerCase().slice(0, 1) +
           pathname.split("/")[2].slice(6).slice(1)
         }`,

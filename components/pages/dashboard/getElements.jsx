@@ -16,7 +16,7 @@ async function Getelements({ param }) {
   const entityName = extractEntityName(param);
 
   const { data } = await axios.get(
-    `${process.env.BACK_URL}/api/${entityName}`,
+    `${process.env.NEXT_PUBLIC_BACK_URL}/api/${entityName}`,
     { next: { tags: [`${param}`] } }
   );
 

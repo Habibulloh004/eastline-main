@@ -39,6 +39,7 @@ async function Home() {
   const lastProducts = getLastItems(products, 4);
   const lastNews = getLastItems(newsData, 10);
 
+
   return (
     <div className="min-h-[50%] py-10 flex flex-col space-y-10 items-center justify-center">
       <Banner
