@@ -13,26 +13,7 @@ export const metadata = {
   title: "EAST LINE",
   description: "EAST LINE TELEKOM", // Consider adding a more descriptive and keyword-rich meta description
   // Additional Open Graph and Twitter meta tags (optional)
-  og: {
-    type: "website",
-    title: "EAST LINE",
-    description: "EAST LINE TELEKOM", // Use the same description here or a unique one
-    url: "https://eastline.vercel.app", // Replace with your actual website URL
-    image: "https://eastline.vercel.app/logo.svg", // Replace with the URL of your website's main image
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "EAST LINE",
-    description: "EAST LINE TELEKOM", // Use the same description here or a unique one
-    image: "https://eastline.vercel.app/logo.svg", // Replace with the URL of your website's main image
-  },
-  // Additional meta tags for SEO, indexing, and customization (optional)
-  keywords: ["east line", "east line telecom" /* Add more relevant keywords */], // Define relevant keywords
-  author: "EAST LINE TELEKOM", // Or the name of your company/individual
-  robots: "index, follow", // Allow search engines to index and follow your website
-  canonical: "https://eastline.vercel.app", // Set the canonical URL to prevent duplicate content issues
-  viewport: "width=device-width, initial-scale=1", // Ensure proper responsiveness across devices
-  charSet: "utf-8", // Specify the character encoding for global accessibility
+
 };
 
 export default function RootLayout({ children }) {
