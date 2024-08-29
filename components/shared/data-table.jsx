@@ -112,7 +112,7 @@ export function DataTable({ columns, data }) {
         table.setSorting([{ id: "fullName", desc: false }]);
       }
     }
-  }, [table.getState().columnFilters[0]?.id]);
+  }, [table]);
 
   return (
     <>

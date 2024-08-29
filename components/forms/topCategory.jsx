@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Form } from "@/components/ui/form";
@@ -53,51 +53,54 @@ const TopCategoryForm = () => {
     router.push("/dashboard");
   };
 
-  async function updateData() {
-    try {
-      const res = await axios.get(`/api/topCategory?id=${id}`);
-      if (res) {
-        form.setValue("name", res.data.data[0].name);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   useEffect(() => {
+    async function updateData() {
+      try {
+        const res = await axios.get(`/api/topCategory?id=${id}`);
+        if (res) {
+          form.setValue("name", res.data.data[0].name);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
     if (id) {
       updateData();
     }
-  }, [id]);
+  }, [id, form]);
 
   return (
-    <Container className="my-10 lg:my-20 flex-col items-start">
-      <div className="text-primary textNormal5 font-semibold mb-5 flex items-center">
-        <ChevronLeft
-          className="cursor-pointer w-8 h-8 lg:w-12 lg:h-12"
-          onClick={() => {
-            router.back();
-          }}
-        />{" "}
-        <p>{id ? "Обновить верхнюю категорию" : "Создать верхнюю категорию"}</p>
-      </div>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex-1 space-y-6 w-full lg:w-1/2"
-        >
-          <CustomFormField
-            fieldType={FormFieldType.INPUT}
-            control={form.control}
-            name="name"
-            label="Название категории"
-          />
-          <SubmitButton isLoading={isLoading} className="w-full">
-            Отправить
-          </SubmitButton>
-        </form>
-      </Form>
-    </Container>
+    <Suspense fallback={<p>Loading...</p>}>
+      <Container className="my-10 lg:my-20 flex-col items-start">
+        <div className="text-primary textNormal5 font-semibold mb-5 flex items-center">
+          <ChevronLeft
+            className="cursor-pointer w-8 h-8 lg:w-12 lg:h-12"
+            onClick={() => {
+              router.back();
+            }}
+          />{" "}
+          <p>
+            {id ? "Обновить верхнюю категорию" : "Создать верхнюю категорию"}
+          </p>
+        </div>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex-1 space-y-6 w-full lg:w-1/2"
+          >
+            <CustomFormField
+              fieldType={FormFieldType.INPUT}
+              control={form.control}
+              name="name"
+              label="Название категории"
+            />
+            <SubmitButton isLoading={isLoading} className="w-full">
+              Отправить
+            </SubmitButton>
+          </form>
+        </Form>
+      </Container>
+    </Suspense>
   );
 };
 

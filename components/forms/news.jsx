@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Form } from "@/components/ui/form";
@@ -139,36 +139,41 @@ const NewsForm = () => {
     if (id) {
       updateData();
     }
-  }, [id]);
+  }, [id, form]);
 
   return (
-    <Container className="my-10 lg:my-20 flex-col items-start">
-      <div className="text-primary textNormal5 font-semibold mb-5 flex items-center">
-        <ChevronLeft
-          className="cursor-pointer w-8 h-8 lg:w-12 lg:h-12"
-          onClick={() => router.back()}
-        />
-        <p>Создать новости</p>
-      </div>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="flex-1 w-full">
-          <div className="w-full space-y-6 lg:w-1/2">
-            <CustomFormField
-              fieldType={FormFieldType.INPUT}
-              control={form.control}
-              name="name"
-              label="Название партнёр"
-            />
-          </div>
-          <div className="my-6">
-            <DropTarget images={image} setImages={setImage} limitImg={1} />
-          </div>
-          <SubmitButton isLoading={isLoading} className="w-full">
-            Отправить
-          </SubmitButton>
-        </form>
-      </Form>
-    </Container>
+    <Suspense fallback={<p>Loading...</p>}>
+      <Container className="my-10 lg:my-20 flex-col items-start">
+        <div className="text-primary textNormal5 font-semibold mb-5 flex items-center">
+          <ChevronLeft
+            className="cursor-pointer w-8 h-8 lg:w-12 lg:h-12"
+            onClick={() => router.back()}
+          />
+          <p>Создать новости</p>
+        </div>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex-1 w-full"
+          >
+            <div className="w-full space-y-6 lg:w-1/2">
+              <CustomFormField
+                fieldType={FormFieldType.INPUT}
+                control={form.control}
+                name="name"
+                label="Название партнёр"
+              />
+            </div>
+            <div className="my-6">
+              <DropTarget images={image} setImages={setImage} limitImg={1} />
+            </div>
+            <SubmitButton isLoading={isLoading} className="w-full">
+              Отправить
+            </SubmitButton>
+          </form>
+        </Form>
+      </Container>
+    </Suspense>
   );
 };
 

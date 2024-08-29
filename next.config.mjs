@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
+  env: {
+    NEXT_PUBLIC_BACK_URL: "http://localhost:3000"
+  },
   images: {
     remotePatterns: [
       {

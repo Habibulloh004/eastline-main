@@ -14,9 +14,9 @@ import SearchComponent from "./searchComponent";
 const Header = async () => {
   const fetchData = async () => {
     const topCategories = await axios.get(
-      `http://localhost:3000/api/topCategory`
+      `${process.env.NEXT_PUBLIC_BACK_URL}}/api/topCategory`
     );
-    const categories = await axios.get(`http://localhost:3000/api/category`);
+    const categories = await axios.get(`${process.env.NEXT_PUBLIC_BACK_URL}}/api/category`);
     return { topCategories, categories };
   };
 

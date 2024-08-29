@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Form, FormLabel } from "@/components/ui/form";
 import CustomFormField, { FormFieldType } from "../shared/customFormField";
@@ -138,115 +138,120 @@ const ProductForm = ({ categories }) => {
     }
   };
 
-  async function updateData() {
-    try {
-      const res = await axios.get(`/api/product?id=${id}`);
-      if (res) {
-        const { name, description, feature, brand, price, categoryId, image } =
-          res.data.data[0];
-        form.setValue("name", name);
-        form.setValue("description", description);
-        form.setValue("feature", feature);
-        form.setValue("brand", brand);
-        form.setValue("price", price);
-        form.setValue("categoryId", categoryId);
-        setImages(
-          image.map((img) => {
-            return {
-              url: img,
-            };
-          })
-        );
-        setContent(feature);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
+  
   useEffect(() => {
+    async function updateData() {
+      try {
+        const res = await axios.get(`/api/product?id=${id}`);
+        if (res) {
+          const { name, description, feature, brand, price, categoryId, image } =
+            res.data.data[0];
+          form.setValue("name", name);
+          form.setValue("description", description);
+          form.setValue("feature", feature);
+          form.setValue("brand", brand);
+          form.setValue("price", price);
+          form.setValue("categoryId", categoryId);
+          setImages(
+            image.map((img) => {
+              return {
+                url: img,
+              };
+            })
+          );
+          setContent(feature);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
     if (id) {
       updateData();
     }
-    //eslint-disable-next-line
-  }, [id]);
+
+  }, [id, form]);
 
   return (
-    <Container className="my-10 lg:my-20 flex-col items-start">
-      <div className="text-primary textNormal5 font-semibold mb-5 flex items-center">
-        <ChevronLeft
-          className="cursor-pointer w-8 h-8 lg:w-12 lg:h-12"
-          onClick={() => router.back()}
-        />
-        <p>{id ? "Изменить" : "Создать"} товар</p>
-      </div>
-      {/* <Notes /> */}
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="flex-1 w-full ">
-          <div className="w-full space-y-6 lg:w-1/2">
-            <CustomFormField
-              fieldType={FormFieldType.INPUT}
-              control={form.control}
-              name="name"
-              label="Название товара"
-            />
-            <CustomFormField
-              fieldType={FormFieldType.NUMBER}
-              control={form.control}
-              name="price"
-              label="Цена продукта"
-            />
-            <CustomFormField
-              fieldType={FormFieldType.INPUT}
-              control={form.control}
-              name="brand"
-              label="Бренд продукта"
-            />
-            <CustomFormField
-              fieldType={FormFieldType.TEXTAREA}
-              control={form.control}
-              name="description"
-              label="Описание продукта"
-            />
-            <div>
-              <FormLabel className="text-xs lg:text-base">
-                Характеристика продукта
-              </FormLabel>
-              <Todo
-                handleContentChange={handleContentChange}
-                content={content}
+    <Suspense fallback={<p>Loading...</p>}>
+      <Container className="my-10 lg:my-20 flex-col items-start">
+        <div className="text-primary textNormal5 font-semibold mb-5 flex items-center">
+          <ChevronLeft
+            className="cursor-pointer w-8 h-8 lg:w-12 lg:h-12"
+            onClick={() => router.back()}
+          />
+          <p>{id ? "Изменить" : "Создать"} товар</p>
+        </div>
+        {/* <Notes /> */}
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex-1 w-full "
+          >
+            <div className="w-full space-y-6 lg:w-1/2">
+              <CustomFormField
+                fieldType={FormFieldType.INPUT}
+                control={form.control}
+                name="name"
+                label="Название товара"
               />
-              {/* <CustomFormField
+              <CustomFormField
+                fieldType={FormFieldType.NUMBER}
+                control={form.control}
+                name="price"
+                label="Цена продукта"
+              />
+              <CustomFormField
+                fieldType={FormFieldType.INPUT}
+                control={form.control}
+                name="brand"
+                label="Бренд продукта"
+              />
+              <CustomFormField
+                fieldType={FormFieldType.TEXTAREA}
+                control={form.control}
+                name="description"
+                label="Описание продукта"
+              />
+              <div>
+                <FormLabel className="text-xs lg:text-base">
+                  Характеристика продукта
+                </FormLabel>
+                <Todo
+                  handleContentChange={handleContentChange}
+                  content={content}
+                />
+                {/* <CustomFormField
               fieldType={FormFieldType.TEXTAREA}
               control={form.control}
               name="feature"
               label="Характеристика продукта"
             /> */}
+              </div>
+              <CustomFormField
+                fieldType={FormFieldType.SELECT}
+                control={form.control}
+                name="categoryId"
+                label="Категория"
+                placeholder="Выберите категорию"
+              >
+                {categories.map((category) => (
+                  <SelectItem key={category.id} value={`${category.id}`}>
+                    <p>{category.name}</p>
+                  </SelectItem>
+                ))}
+              </CustomFormField>
             </div>
-            <CustomFormField
-              fieldType={FormFieldType.SELECT}
-              control={form.control}
-              name="categoryId"
-              label="Категория"
-              placeholder="Выберите категорию"
-            >
-              {categories.map((category) => (
-                <SelectItem key={category.id} value={`${category.id}`}>
-                  <p>{category.name}</p>
-                </SelectItem>
-              ))}
-            </CustomFormField>
-          </div>
-          <div className="my-6">
-            <DropTarget images={images} setImages={setImages} />
-          </div>
+            <div className="my-6">
+              <DropTarget images={images} setImages={setImages} />
+            </div>
 
-          <SubmitButton isLoading={isLoading} className="w-full">
-            Отправить
-          </SubmitButton>
-        </form>
-      </Form>
-    </Container>
+            <SubmitButton isLoading={isLoading} className="w-full">
+              Отправить
+            </SubmitButton>
+          </form>
+        </Form>
+      </Container>
+    </Suspense>
   );
 };
 
