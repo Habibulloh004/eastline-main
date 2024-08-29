@@ -7,6 +7,7 @@ import AllProducts from "@/components/shared/allProducts";
 import Banner from "@/components/shared/banner";
 import db from "@/db/db";
 import { getLastItems, getRandomItems } from "@/lib/utils";
+import { Suspense } from "react";
 
 async function Home() {
   const products = await db.product.findMany();
@@ -39,24 +40,25 @@ async function Home() {
   const lastProducts = getLastItems(products, 4);
   const lastNews = getLastItems(newsData, 10);
 
-
   return (
     <div className="min-h-[50%] py-10 flex flex-col space-y-10 items-center justify-center">
-      <Banner
-        productData={bannerProduct}
-        categories={categories}
-        currency={currency}
-      />
-      <AllCategories categories={categories} topCategories={topCategories} />
-      <AllProducts
-        products={lastProducts}
-        categories={categories}
-        currency={currency}
-      />
-      <Icons />
-      <OurLicenses sertificate={randomSertificate} license={randomLicense} />
-      <Partners partner={partner} />
-      <NewsRew newsItem={lastNews} reviews={randomReviews} />
+      <Suspense>
+        <Banner
+          productData={bannerProduct}
+          categories={categories}
+          currency={currency}
+        />
+        <AllCategories categories={categories} topCategories={topCategories} />
+        <AllProducts
+          products={lastProducts}
+          categories={categories}
+          currency={currency}
+        />
+        <Icons />
+        <OurLicenses sertificate={randomSertificate} license={randomLicense} />
+        <Partners partner={partner} />
+        <NewsRew newsItem={lastNews} reviews={randomReviews} />
+      </Suspense>
     </div>
   );
 }
