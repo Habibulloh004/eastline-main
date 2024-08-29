@@ -2,7 +2,7 @@ import AnimatedCounter from "@/components/shared/animatedCounter";
 import Container from "@/components/shared/container";
 import { AboutBanner, AboutCard1, AboutCard2, Logo } from "@/public/img";
 import Image from "next/image";
-import React from "react";
+import React, { Suspense } from "react";
 
 async function AboutUs() {
   return (

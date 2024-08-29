@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import NextTopLoader from "nextjs-toploader";
 import ChatBot from "@/components/shared/chat-bot";
 import { EdgeStoreProvider } from "@/lib/edgestore";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -57,7 +58,9 @@ export default function RootLayout({ children }) {
           showAtBottom={false}
         />
         <Header />
-        <div className="grow">{children}</div>
+        <div className="grow">
+          <Suspense fallback={<p>Loading...</p>}>{children}</Suspense>
+        </div>
         <Footer />
         {/* <ChatBot /> */}
         <Toaster position="bottom-right" reverseOrder={false} />

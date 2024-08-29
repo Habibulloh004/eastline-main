@@ -34,7 +34,7 @@ const DeleteItem = ({ deleteRow, payment }) => {
   const deleteItem = async (payment) => {
     try {
       const response = await axios.delete(
-        `${process.env.NEXT_PUBLIC_BACK_URL}}/api/${
+        `${process.env.NEXT_PUBLIC_BACK_URL}/api/${
           pathname.split("/")[2].slice(6).toLowerCase().slice(0, 1) +
           pathname.split("/")[2].slice(6).slice(1)
         }`,
@@ -54,7 +54,7 @@ const DeleteItem = ({ deleteRow, payment }) => {
   };
 
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="h-8 w-8 p-0">

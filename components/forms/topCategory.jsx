@@ -70,7 +70,7 @@ const TopCategoryForm = () => {
   }, [id, form]);
 
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense>
       <Container className="my-10 lg:my-20 flex-col items-start">
         <div className="text-primary textNormal5 font-semibold mb-5 flex items-center">
           <ChevronLeft

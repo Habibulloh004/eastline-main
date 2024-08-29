@@ -10,7 +10,7 @@ const HeroTitle = () => {
   const findPath = heroTitle.find((item) => item.path == path);
 
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense>
       <section
         className={`w-10/12 mx-auto ${
           path == "/about-us" || path == "/contacts" || path == "/services"
