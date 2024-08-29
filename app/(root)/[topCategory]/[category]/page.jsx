@@ -32,14 +32,12 @@ const Category = async ({ params }) => {
   //     categorysData,
   //   };
   // }
-  
+
   async function getProducts() {
-    const res = await db.product.findMany({
-      where: {
-        categoryId: Number(category),
-      },
-    });
-    return res;
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACK_URL}/api/product?categoryId=${category}`
+    );
+    return res.data.data;
   }
 
   async function getTopProducts() {

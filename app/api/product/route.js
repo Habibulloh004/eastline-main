@@ -2,11 +2,20 @@ import db from "@/db/db";
 
 export async function GET(req) {
   const id = await req.nextUrl.searchParams.get("id");
+  const categoryId = await req.nextUrl.searchParams.get("categoryId");
   if (id) {
     const getProducts = await db.product.findMany({
       where: { id: Number(id) },
     });
     return Response.json({ data: getProducts });
+  }
+  if (categoryId) {
+    const getCategoryProduct = await db.product.findMany({
+      where: {
+        categoryId: Number(categoryId),
+      },
+    });
+    return Response.json({ data: getCategoryProduct });
   } else {
     const getProducts = await db.product.findMany();
     return Response.json({ data: getProducts });
