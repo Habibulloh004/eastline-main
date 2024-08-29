@@ -51,7 +51,7 @@ const Category = async ({ params }) => {
         topProductsData={topProductsData}
         categoryData={categoryData.categoryData}
       />
-      <div className="pt-5 w-[95%] lg:w-10/12 mx-auto grid grid-cols-1 md:grid-cols-4 ">
+      <div className="pt-5 w-[95%] lg:w-10/12 mx-auto gap-6 grid grid-cols-1 md:grid-cols-4 ">
         <SideBarCategory
           categoryId={categoryData.categoryData}
           categorys={categoryData.categorysData}

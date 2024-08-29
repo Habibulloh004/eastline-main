@@ -32,7 +32,7 @@ const Partners = ({partner}) => {
             return (
               <CarouselItem
                 key={index}
-                className="basis-full sm:basis-[45%] md:basis-[33.3%]"
+                className="basis-full sm:basis-[45%] md:basis-[33.3%] bg-white mr-2 rounded-md"
               >
                 <CustomImage
                   src={item.image}

@@ -117,7 +117,7 @@ const Banner = ({ productData, categories, currency }) => {
             {productData[2]?.product && (
               <div className="p-5 w-2/6 bg-primary rounded-xl flex flex-col gap-y-1">
                 <div className="flex justify-between items-start">
-                  <h1 className="font-medium textNormal4 text-right leading-7">
+                  <h1 className="font-medium textNormal4 leading-7">
                     {productData[2].product.name}
                   </h1>
                   <Link

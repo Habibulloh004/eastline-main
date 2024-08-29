@@ -147,7 +147,7 @@ const Products = ({ productsData, categorys, topProductsData, currency }) => {
             <Link
               href={`/${topProductsData[0].id}/${item.categoryId}/${item.id}`}
               key={item.id}
-              className="relative w-full flex max-md:bg-secondary rounded-md flex-col gap-4 p-5"
+              className="relative w-full flex max-md:bg-secondary rounded-md flex-col gap-4 p-5 border"
             >
               <div className="relative max-md:bg-white rounded-md max-md:p-2 sm:h-[300px] md:h-full">
                 <CustomImage

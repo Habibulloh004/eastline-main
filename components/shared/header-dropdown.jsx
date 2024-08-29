@@ -45,7 +45,7 @@ export function HeaderDropdown({ topCategory }) {
                 <DropdownMenuSubContent side="right">
                   {topCategory.categories.map((category) => (
                     <DropdownMenuItem asChild key={category.id}>
-                      <Link href={`/${topCategory.id}/${category.id}`}>
+                      <Link className="textSmall2" href={`/${topCategory.id}/${category.id}`}>
                         {category.name}
                       </Link>
                     </DropdownMenuItem>
@@ -61,7 +61,7 @@ export function HeaderDropdown({ topCategory }) {
                   {topCategory.categories.map((category) => (
                     <Link
                       key={category.id}
-                      className="w-full px-2 py-1 rounded-md opacity-[0.8] textSmall2 hover:bg-secondary cursor-pointer"
+                      className="w-full px-2 py-1 rounded-md opacity-[0.8] textSmall3 hover:bg-secondary cursor-pointer"
                       href={`/${topCategory.id}/${category.id}`}
                     >
                       {category.name}

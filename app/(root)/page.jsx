@@ -42,7 +42,7 @@ async function Home() {
 
   return (
     <div className="min-h-[50%] py-10 flex flex-col space-y-10 items-center justify-center">
-      <Banner
+      {/* <Banner
         productData={bannerProduct}
         categories={categories}
         currency={currency}
@@ -56,7 +56,7 @@ async function Home() {
       <Icons />
       <OurLicenses sertificate={randomSertificate} license={randomLicense} />
       <Partners partner={partner} />
-      <NewsRew newsItem={lastNews} reviews={randomReviews} />
+      <NewsRew newsItem={lastNews} reviews={randomReviews} /> */}
     </div>
   );
 }

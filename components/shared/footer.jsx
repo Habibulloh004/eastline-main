@@ -14,8 +14,9 @@ import { CiMail } from "react-icons/ci";
 
 const Footer = () => {
   return (
-    <footer>
-      <Container className="w-full lg:w-8/12 items-start max-lg:bg-primary text-secondary lg:text-foreground lg:border-t">
+    <footer className="relative">
+      <div className="absolute w-screen h-full bg-secondary -z-10"></div>
+      <Container className="w-full lg:w-8/12 items-start max-lg:bg-primary text-secondary lg:text-foreground">
         <div className="flex justify-between w-full items-center lg:items-start lg:flex-row flex-col py-8 max-lg:gap-4">
           <section className="flex justify-between items-start gap-20">
             <ul className="space-y-2 lg:space-y-4 textSmall3 hidden lg:block">
@@ -64,20 +65,26 @@ const Footer = () => {
             </div>
             <ul className="text-xl flex items-center justify-center lg:justify-end gap-2 border-t lg:border-none max-lg:pt-3">
               <li className="lg:border p-2 rounded-full items-block">
-                <FaTelegram />
+                <a className="w-full h-full" target="_blank" href="https://t.me/ELTprice_bot">
+                  <FaTelegram />
+                </a>
               </li>
               <li className="lg:border p-2 rounded-full items-block">
-                <FaFacebookF />
+                <a className="w-full h-full" target="_blank" href="https://www.facebook.com/eastlinetelecom">
+                  <FaFacebookF />
+                </a>
               </li>
-              <li className="lg:border p-2 rounded-full items-block">
+              {/* <li className="lg:border p-2 rounded-full items-block">
                 <FaInstagram />
-              </li>
+              </li> */}
               <li className="lg:border p-2 rounded-full items-block">
-                <FaYoutube />
+                <a className="w-full h-full" target="_blank" href="https://www.youtube.com/@AnpArtSer">
+                  <FaYoutube />
+                </a>
               </li>
-              <li className="lg:border p-2 rounded-full items-block">
+              {/* <li className="lg:border p-2 rounded-full items-block">
                 <CiMail />
-              </li>
+              </li> */}
             </ul>
           </section>
         </div>

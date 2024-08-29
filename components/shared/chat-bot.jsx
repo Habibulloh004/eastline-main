@@ -3,10 +3,10 @@ import { useEffect } from "react";
 
 export default function ChatBot() {
   useEffect(() => {
-    (function (a, m1, o, c, r, m2) {
+    (function (a, m, o, c, r, m2) {
       a[m2] = {
-        id: "413126",
-        hash: "a41b728aa658401aa52ee005b83d9ec15b0bce3002e394f179251d00b5c88620",
+        id: "413950",
+        hash: "e993bc16f534103748c8a7ad9036e6f45189df1b22a2971ac33608898736c73c",
         locale: "ru",
         inline: false,
         setMeta: function (p) {

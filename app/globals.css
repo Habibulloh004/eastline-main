@@ -26,9 +26,10 @@ html {
   box-shadow: none; /* Remove any potential box shadow */
 }
 
-/* #amobutton {
-  width: 100px !important;
-  height: 100px !important;
+/* 
+#amobutton {
+  width: 50px !important;
+  height: 50px !important;
   border-radius: 50% !important;
 }
 #amobutton > .amo-button--main-icon {

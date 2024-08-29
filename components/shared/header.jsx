@@ -14,11 +14,9 @@ import SearchComponent from "./searchComponent";
 const Header = async () => {
   const fetchData = async () => {
     const topCategories = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACK_URL}/api/topCategory`
+      `http://localhost:3000/api/topCategory`
     );
-    const categories = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACK_URL}/api/category`
-    );
+    const categories = await axios.get(`http://localhost:3000/api/category`);
     return { topCategories, categories };
   };
 
@@ -30,18 +28,18 @@ const Header = async () => {
         <Container className="flex-col w-full bg-primary items-start">
           <div className="flex items-center justify-between w-10/12 mx-auto text-secondary py-2 gap-1 md:gap-5">
             <p className="hidden lg:block">
-              Более 10-ти лет опыта на рынке систем безопасности и мини АТС
+              Более 20-ти лет опыта на рынке систем безопасности и мини АТС
             </p>
             <div className="flex flex-col sm:flex-row justify-end items-center gap-1 md:gap-5 lg:hidden">
               <p>info@elt.uz</p>
-              <a href="tel:+998909337880" className="flex items-center">
-                +998 90 933-78-80
+              <a href="tel:+998555108033" className="flex items-center">
+                +998 55 510-80-33
               </a>
               <a href="tel:+998555108133" className="flex items-center">
                 +998 55 510-81-33
               </a>
             </div>
-            <p className="ml-auto w-[40%]">
+            <p className="ml-auto text-right w-[40%]">
               Режим работы: ПН, ВТ, СР, ЧТ, СБ, ВС | с 10:00 - 20:00 Выходной:
               ПТ
             </p>
@@ -86,9 +84,9 @@ const Header = async () => {
           </ul>
           <div className="hidden items-center gap-1 md:gap-5 lg:flex">
             <p>info@elt.uz</p>
-            <a href="tel:+998909337880" className="flex items-center gap-2">
+            <a href="tel:+998555108033" className="flex items-center gap-2">
               <Phone size={16} />
-              +998 90 933-78-80
+              +998 55 510-80-33
             </a>
             <a href="tel:+998555108133" className="flex items-center gap-2">
               <Phone size={16} />
